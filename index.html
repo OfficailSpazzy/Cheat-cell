@@ -18,7 +18,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Cheat Cell" />
-<script>if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});</script>
+<script>window.CC_BUILD="mvilmbcb";
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(r => r.update()).catch(() => {});
+(function(){function check(){fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(v=>{if(v.build&&v.build!==window.CC_BUILD){var k='cc-reloaded-'+v.build;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1')}catch(e){}location.reload()}}).catch(function(){})}
+if(location.protocol==='https:'){check();document.addEventListener('visibilitychange',function(){if(!document.hidden)check()})}})();</script>
 </head>
 <body>
 <div id="app">
@@ -4668,7 +4671,7 @@ void main() {
           </div>
           ${this.net==="online"?this.onlineHTML():""}
           ${this.readyHTML(i,r)}
-          <div class="lb-queue"><span>Build 0.4.0</span><span>${this.net==="online"?t?`Room ${t.code}`:"Online":(i.id==="undetected"||i.id==="freetrial")&&this.s.forceRole?"Dev: menu guaranteed":"Bot lobby"}</span></div>
+          <div class="lb-queue"><span>Build 0.4.3</span><span>${this.net==="online"?t?`Room ${t.code}`:"Online":(i.id==="undetected"||i.id==="freetrial")&&this.s.forceRole?"Dev: menu guaranteed":"Bot lobby"}</span></div>
           ${Ge.isIOS&&!Ge.standalone&&!Ge.embedded&&Ge.kind==="web"?'<div class="lb-tip">Full screen on iPhone: tap Share, then <b>Add to Home Screen</b>, and open Cheat Cell from there.</div>':""}
         </div>
       </section>
