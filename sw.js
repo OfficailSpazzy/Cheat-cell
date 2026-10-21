@@ -1,5 +1,5 @@
 // Minimal service worker: makes the site installable and lets it start offline after the first visit.
-const CACHE = 'cheatcell-v3';
+const CACHE = 'cheatcell-v4';
 self.addEventListener('install', e => { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png']))); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 // Network first so new builds show up right away; cache is the fallback.
