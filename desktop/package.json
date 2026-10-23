@@ -1,7 +1,7 @@
 {
   "name": "cheat-cell",
   "productName": "Cheat Cell",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "Cheat Cell: a battle royale where the cheat menu is the game.",
   "author": "OfficailSpazzy",
   "main": "main.cjs",
