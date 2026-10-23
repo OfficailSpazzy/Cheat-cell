@@ -1,0 +1,36 @@
+# Builds the Windows app whenever the game changes and puts it on the
+# "Cheat Cell for PC" release: Cheat-Cell-Setup.exe and Cheat-Cell-Portable.exe.
+name: Windows app
+on:
+  push:
+    branches: [main]
+    paths: ['desktop/**', '.github/workflows/desktop.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: desktop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-audit --no-fund
+      - run: npx electron-builder --win --publish never
+      - name: Publish to the PC release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: pc-latest
+          name: Cheat Cell for PC
+          body: |
+            Download **Cheat-Cell-Setup.exe** to install Cheat Cell on Windows (it adds a desktop shortcut).
+            Or download **Cheat-Cell-Portable.exe** to run it without installing.
+            Windows may say "Windows protected your PC" because the app isn't signed yet: click **More info**, then **Run anyway**.
+          make_latest: true
+          files: |
+            desktop/dist/Cheat-Cell-Setup.exe
+            desktop/dist/Cheat-Cell-Portable.exe

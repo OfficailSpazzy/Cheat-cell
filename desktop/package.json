@@ -1,0 +1,30 @@
+{
+  "name": "cheat-cell",
+  "productName": "Cheat Cell",
+  "version": "0.6.0",
+  "description": "Cheat Cell: a battle royale where the cheat menu is the game.",
+  "author": "OfficailSpazzy",
+  "main": "main.cjs",
+  "private": true,
+  "devDependencies": {
+    "electron": "31.7.7",
+    "electron-builder": "24.13.3"
+  },
+  "build": {
+    "appId": "com.cheatcell.game",
+    "productName": "Cheat Cell",
+    "directories": { "output": "dist" },
+    "files": ["main.cjs", "preload.cjs", "icon.png", "app/**", "package.json"],
+    "win": {
+      "icon": "icon.png",
+      "target": ["nsis", "portable"]
+    },
+    "nsis": {
+      "oneClick": true,
+      "artifactName": "Cheat-Cell-Setup.${ext}",
+      "createDesktopShortcut": true,
+      "shortcutName": "Cheat Cell"
+    },
+    "portable": { "artifactName": "Cheat-Cell-Portable.${ext}" }
+  }
+}
